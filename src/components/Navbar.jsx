@@ -1,18 +1,24 @@
 import React, {useState} from 'react';
 import {useDarkMode} from '../hooks/useDarkMode';
+import { useLocalStorage } from '../useLocalStorage';
 
 const Navbar = () => {
-  //const [darkMode, setDarkMode] = useState(false);
-  // const toggleMode = e => {
-  //   e.preventDefault();
-  //   setDarkMode(!darkMode);
-  //   return [darkMode, setDarkMode, toggleMode]
-  // };
+  const [darkMode, setDarkMode] = useLocalStorage(useState, false);
+  const toggleMode = (e) => {
+    e.preventDefault();
+    setDarkMode(!darkMode);
+    return [darkMode, setDarkMode, toggleMode]
+  };
+
+
   return (
     <nav className="navbar">
       <h1>Crypto Tracker</h1>
       <div className="dark-mode__toggle">
-        <div onClick={useDarkMode} className="toggle"></div>
+        <div 
+             onClick={toggleMode} 
+             className={useDarkMode}>
+        </div>
       </div>
     </nav>
   );
@@ -25,7 +31,12 @@ export default Navbar;
 
 
 
-
+ //const [darkMode, setDarkMode] = useState(false);
+  // const toggleMode = e => {
+  //   e.preventDefault();
+  //   setDarkMode(!darkMode);
+  //   return [darkMode, setDarkMode, toggleMode]
+  // };
 
 
 // const Navbar = () => {

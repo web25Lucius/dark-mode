@@ -1,20 +1,11 @@
 
-import { useState, useEffect} from 'react';
-import { useLocalStorage } from './useLocalStorage';
+import {useEffect} from 'react';
+//import {useLocalStorage} from './useLocalStorage';
 //import Navbar from './components/Navbar';
 
 
 export const useDarkMode = () => {
-  //const [darkMode, setDarkMode] = useState(false);
-
-  const [darkMode, setDarkMode] = useLocalStorage(useState, false);
-  const toggleMode = (e) => {
-    e.preventDefault();
-    setDarkMode(!darkMode);
-    return [darkMode, setDarkMode, toggleMode]
-  };
-  useEffect(() => {
-  //toggleMode();
+  function useEffect(() => {
    if (darkMode === true ) {
           document.div.classList.replace('toggle', 'toggle toggled');
           document.body.classList.add("dark-mode"); 
@@ -27,3 +18,18 @@ export const useDarkMode = () => {
 
      return toggleMode(); 
     };
+
+
+
+
+
+
+    
+//const [darkMode, setDarkMode] = useState(false);
+
+  // const [darkMode, setDarkMode] = useLocalStorage(useState, false);
+  // const toggleMode = (e) => {
+  //   e.preventDefault();
+  //   setDarkMode(!darkMode);
+  //   return [darkMode, setDarkMode, toggleMode]
+  // };
