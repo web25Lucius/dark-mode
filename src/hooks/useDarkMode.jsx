@@ -3,16 +3,16 @@ import {useLocalStorage} from './useLocalStorage';
 
 
 export const useDarkMode = ()=>{
- const [isDark, setisDark] = useLocalStorage('dark');
+ const [isDark, setIsDark] = useLocalStorage('dark', []);
  useEffect=(()=>{
-  if (isDark == 'dark'){
+  if (isDark !== 'dark'){
     document.body.classList.add("dark-mode")
   } else {
     document.body.classList.remove("dark-mode");
   }
-  return [isDark, setisDark]
+  return [isDark, setIsDark]
 
- }, [useLocalStorage])
+ }, [isDark, setIsDark])
   
 }
 
