@@ -1,20 +1,38 @@
-import React, {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import {useLocalStorage} from './useLocalStorage';
 
 
-export const useDarkMode = ()=>{
- const [isDark, setIsDark] = useLocalStorage('dark', []);
- useEffect=(()=>{
-  if (isDark !== 'dark'){
-    document.body.classList.add("dark-mode")
-  } else {
-    document.body.classList.remove("dark-mode");
-  }
-  return [isDark, setIsDark]
+export const useDarkMode = (key, initialValue) => {
+  const [isDark, setIsDark, valueSet] = useLocalStorage(key, initialValue);
+    useEffect(()=>{ //useEffect can never = anything
+      !isDark ? document.body.classList.remove("dark-mode") : document.body.classList.add("dark-mode"); 
+ }, [isDark, setIsDark, valueSet]);
+  return [isDark, setIsDark, valueSet]
+   };
 
- }, [isDark, setIsDark])
+
+
+
+
+
+
+
+
+
+
+// export const useDarkMode = ()=>{
+//  const [isDark, setIsDark, valueSet] = useLocalStorage('dark', false);
+//  useEffect=(()=>{
+//   if (isDark !== 'dark'){
+//     document.querySelector("body").classList.add("dark-mode")
+//   } else {
+//     document.querySelector("body").classList.remove("dark-mode");
+//   }
+//   return [isDark, setIsDark, valueSet]
+
+//  }, [setIsDark])
   
-}
+// }
 
 
 
